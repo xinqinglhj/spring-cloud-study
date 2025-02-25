@@ -1,2 +1,2 @@
 ## Nacos服务发现
-![img.png](img.png)
+![](./images/cloud-07-01.png)
