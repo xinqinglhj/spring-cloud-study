@@ -1,25 +1,21 @@
 # 仅记录项目中使用到的命令
 
-# 配置docker镜像
-通过命令行生成配置（推荐新手）
-sudo tee /etc/docker/daemon.json <<-'EOF'
-{
-    "registry-mirrors": [
-        "https://docker.m.daocloud.io",
-        "https://docker.imgdb.de",
-        "https://docker-0.unsee.tech",
-        "https://docker.hlmirror.com"
-    ]
-}
-EOF
 
-# 应用配置（必须执行）
-sudo systemctl daemon-reload
-sudo systemctl restart docker
-# 验证简单镜像下载
-sudo docker pull hello-world
-
+# 创建网络
+docker network create nacos-mysql-network
+# nacos依赖mysql，先启动mysql
+docker run -d --name mysql   --network nacos-mysql-network \
+-e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=nacos -p 3306:3306   mysql:8.0.37-debian
 # docker安装nacos并启动
-docker pull nacos/nacos-server:v2.4.3
-docker run -d -p 8848:8848 \
---name nacos -e MODE=standalone nacos/nacos-server:v2.4.3
+docker run -d --name nacos \
+  -e MODE=standalone \
+  --network nacos-mysql-network \
+  -e MYSQL_HOST=mysql \
+  -e MYSQL_PORT=3306 \
+  -e MYSQL_USER=root \
+  -e MYSQL_PASSWORD=root \
+  -e MYSQL_DATABASE=nacos \
+  -p 8848:8848 \
+  -p 9848:9848 \
+  -p 9849:9849 \
+  nacos/nacos-server:v2.4.3
