@@ -1,6 +1,7 @@
 package com.product.service;
 
-import com.product.bean.Product;
+
+import com.product.Product;
 
 public interface ProductService {
 

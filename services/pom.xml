@@ -18,6 +18,13 @@
     <artifactId>services</artifactId>
 
     <dependencies>
+        <!-- pojo层 -->
+        <dependency>
+            <groupId>com.sky</groupId>
+            <artifactId>model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
         <!-- 服务发现 -->
        <dependency>
             <groupId>com.alibaba.cloud</groupId>
