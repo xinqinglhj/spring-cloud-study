@@ -2,6 +2,7 @@ package com.order.service.impl;
 
 
 import com.order.Order;
+import com.order.feign.ProductFeignClient;
 import com.order.service.OrderService;
 import com.product.Product;
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +27,13 @@ public class OrderServiceImpl implements OrderService {
     RestTemplate restTemplate;
     @Autowired
     LoadBalancerClient loadBalancerClient;
+    @Autowired
+    ProductFeignClient productFeignClient;
 
     @Override
     public Order createOrder(Long productId, Long userId) {
-        Product product = getProductBalancedAnnotation(productId);
+//        Product product = getProductBalancedAnnotation(productId);
+        Product product = productFeignClient.getProductById(productId);
 
         Order order = new Order();
         order.setId(1L);

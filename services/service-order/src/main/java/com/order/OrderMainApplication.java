@@ -7,6 +7,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 import java.util.concurrent.Executor;
@@ -14,6 +15,7 @@ import java.util.concurrent.Executors;
 
 
 @SpringBootApplication
+@EnableFeignClients // 开启feign远程调用功能
 public class OrderMainApplication {
 
 	public static void main(String[] args) {
