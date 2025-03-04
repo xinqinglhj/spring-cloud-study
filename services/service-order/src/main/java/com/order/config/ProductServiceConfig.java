@@ -29,7 +29,7 @@ public class ProductServiceConfig {
         return Logger.Level.FULL;
     }
 
-    @Bean
+//    @Bean
     Retryer retryer() {
         return new Retryer.Default();
     }
