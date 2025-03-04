@@ -11,7 +11,9 @@ spring:
         import-check:
           enabled: false
 
-
+logging:
+  level:
+    com.order.feign: debug
 
 ---
 spring:
