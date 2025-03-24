@@ -20,7 +20,8 @@ public class MyBlockExceptionHandler implements BlockExceptionHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response, String s, BlockException e) throws Exception {
         response.setContentType("application/json;charset=utf-8");
         PrintWriter writer = response.getWriter();
-
+        // too many requests
+        response.setStatus(429);
         AjaxResult error = AjaxResult.error("系统繁忙，请稍后再试：" + e.getClass());
         writer.write(objectMapper.writeValueAsString(error));
 
