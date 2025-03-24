@@ -35,10 +35,34 @@ public class OrderController {
     }
 
     /**
-     * 获取订单
+     * 创建订单
      */
     @RequestMapping("/create")
-    public Order getOrder(@RequestParam("userId") Long userId, @RequestParam("productId") Long productId) {
+    public Order createOrder(@RequestParam("userId") Long userId, @RequestParam("productId") Long productId) {
         return orderService.createOrder(productId, userId);
     }
+
+    /**
+     * 创建订单-秒杀
+     */
+    @RequestMapping("/create/kill")
+    public Order createKillOrder(@RequestParam("userId") Long userId, @RequestParam("productId") Long productId) {
+        return orderService.createOrder(productId, userId);
+    }
+
+    /**
+     * 写数据
+     */
+    @GetMapping("/write")
+    public String writeData() {
+        return "write data success";
+    }
+    /**
+     * 读数据
+     */
+    @GetMapping("/read")
+    public String readData() {
+        return "read data success";
+    }
+
 }
