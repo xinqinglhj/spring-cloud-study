@@ -1,6 +1,5 @@
 # 仅记录项目中使用到的命令
 
-
 # 创建网络
 docker network create nacos-mysql-network
 # nacos依赖mysql，先启动mysql
@@ -19,3 +18,7 @@ docker run -d --name nacos \
   -p 9848:9848 \
   -p 9849:9849 \
   nacos/nacos-server:v2.4.3
+
+  # 安装mysql
+  docker run --name mysql-container \
+  -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d mysql:8.0.37-debian
