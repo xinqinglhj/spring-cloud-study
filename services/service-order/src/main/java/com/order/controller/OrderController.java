@@ -53,7 +53,7 @@ public class OrderController {
      */
     @GetMapping("/create/kill")
     // 自定义流控埋点
-    @SentinelResource(value = "kill-order", fallback = "killOrderFallback")
+    @SentinelResource(value = "kill-order", fallback =  "killOrderFallback")
     public Order createKillOrder(@RequestParam("userId") Long userId, @RequestParam("productId") Long productId) {
         return orderService.createOrder(productId, userId);
     }
@@ -80,6 +80,7 @@ public class OrderController {
      */
     @GetMapping("/read")
     public String readData() {
+        log.info("read success......");
         return "read data success";
     }
 
