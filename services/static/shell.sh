@@ -20,5 +20,8 @@ docker run -d --name nacos \
   nacos/nacos-server:v2.4.3
 
   # 安装mysql
-  docker run --name mysql-container \
-  -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d mysql:8.0.37-debian
+docker run --name mysql-container \
+  -e MYSQL_ROOT_PASSWORD=root \
+  -p 3306:3306 \
+  -v /path/to/local/mysql-data:/var/lib/mysql \
+  -d mysql:8.0.37-debian
