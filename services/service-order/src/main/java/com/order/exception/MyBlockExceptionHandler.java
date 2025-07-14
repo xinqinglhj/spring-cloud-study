@@ -22,7 +22,7 @@ public class MyBlockExceptionHandler implements BlockExceptionHandler {
         PrintWriter writer = response.getWriter();
         // too many requests
         response.setStatus(429);
-        AjaxResult error = AjaxResult.error("系统繁忙，请稍后再试：" + e.getClass());
+        AjaxResult<String> error = AjaxResult.error("系统繁忙，请稍后再试：" + e.getClass());
         writer.write(objectMapper.writeValueAsString(error));
 
         writer.flush();
